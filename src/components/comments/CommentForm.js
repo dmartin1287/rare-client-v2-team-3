@@ -20,22 +20,30 @@ export const CommentForm = () => {
 
   const handleUpdate = (evt) => {
     const copy = { ...comment }
-    copy.content = evt.target.value
+    copy[evt.target.name] = evt.target.value
     setComment(copy)
   }
 
   return (
+
     <section className="section">
       <div className="card">
         <div className="card-content">
           <div className="field">
-            <label className="label">Add a new comment</label>
+            <label className="label">Subject</label>
             <div className="control">
               <input className="input" required autoFocus
+                name="subject"
+                type="text"
+                value={comment.subject}
+                onChange={handleUpdate } />
+            </div>
+            <label className="label">Comment</label>
+            <input className="input" required 
+                name="content"
                 type="text"
                 value={comment.content}
                 onChange={handleUpdate } />
-            </div>
           </div>
           <div className="field is-grouped">
             <div className="control">

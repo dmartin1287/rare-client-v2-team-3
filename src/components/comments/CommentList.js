@@ -43,6 +43,8 @@ export const CommentsList = ({ userId }) => {
                   <p>
                     <strong>{comment.author?.user.first_name} {comment.author?.user.last_name}</strong>
                     <br />
+                    {comment.subject}
+                    <br />
                     {comment.content}
                   </p>
                 </div>
