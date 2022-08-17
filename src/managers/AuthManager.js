@@ -4,6 +4,7 @@ export const loginUser = (user) => {
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json"
+      
     },
     body: JSON.stringify(user)
   }).then(res => res.json())
