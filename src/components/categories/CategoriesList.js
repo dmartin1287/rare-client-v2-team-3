@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react"
 import { getAllCategories, deleteCategory } from "../../managers/CategoryManager"
 import { CategoryForm } from "./CategoryForm"
+import { useNavigate } from 'react-router-dom'
 
 export const CategoriesList = () => {
+  const navigate = useNavigate()
   const [categories, setCategories] = useState([])
   const [editCategory, setEditCategory] = useState({ label: '' })
 
@@ -18,36 +20,39 @@ export const CategoriesList = () => {
     deleteCategory(categoryId).then(loadCategories)
   }
 
-  return <section className="section">
-    <div className="columns">
-      <div className="column">
-        <table className="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>Categories</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              categories.map(category => (
-                <tr key={category.id}>
-                  <td>{category.label}</td>
-                  <td>
-                    <div className="buttons">
-                      <button className="button is-warning" onClick={() => { setEditCategory(category) }}>edit</button>
-                      <button className="button is-danger" onClick={() => { handleDelete(category.id) }}>delete</button>
-                    </div>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+  return <>
+
+    <section className="section">
+      <div className="columns">
+        <div className="column">
+          <table className="table is-fullwidth">
+            <thead>
+              <tr>
+                <th>Categories</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                categories.map(category => (
+                  <tr key={category.id}>
+                    <td>{category.label}</td>
+                    <td>
+                      <div className="buttons">
+                        <button className="button is-warning" onClick={() => { setEditCategory(category) }}>edit</button>
+                        <button className="button is-danger" onClick={() => { handleDelete(category.id) }}>delete</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+        <div className="column">
+          <CategoryForm loadCategories={loadCategories} category={editCategory} setCategory={setEditCategory} />
+        </div>
       </div>
-      <div className="column">
-        <CategoryForm loadCategories={loadCategories} category={editCategory} setCategory={setEditCategory} />
-      </div>
-    </div>
-  </section>
+    </section>
+  </>
 }
