@@ -13,6 +13,7 @@ import { EditPost } from "../components/posts/EditPost"
 import { CommentForm } from "../components/comments/CommentForm"
 import { CommentsList } from "../components/comments/CommentList"
 import { EditComment } from "../components/comments/EditComment"
+import { AuthorList } from "../components/authors/AuthorList"
 
 
 
@@ -25,6 +26,7 @@ export const ApplicationViews = ({ token, setToken, setUserId, userId }) => {
       <Route path="/tags" element={<TagList />} />
 
       <Route path="/posts" element={<PostList />} />
+      <Route path="/authors" element={<AuthorList />} />
       <Route path="/my-posts" element={<MyPost />} />
       <Route path="/posts/create" element={<PostForm />} />
       <Route path="/posts/:postId/edit" element={<EditPost />} />
