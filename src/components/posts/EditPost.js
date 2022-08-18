@@ -14,6 +14,7 @@ export const EditPost = () => {
 
   useEffect(() => {
     getSinglePost(postId).then(data => {
+      data.category=data.category.id
       setPost(data)
       const tagIds = data.tags.map(t => t.id)
       setTagsForPost(tagIds)
@@ -24,7 +25,7 @@ export const EditPost = () => {
 
   const updateTags = (tagId) => {
     const tagsCopy = [...tagsForPost]
-    const index = post.tags.indexOf(tagId)
+    const index = tagsCopy.indexOf(tagId)
     if (index < 0) {
       tagsCopy.push(tagId)
     } else {
@@ -35,7 +36,7 @@ export const EditPost = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault()
-
+    post.tags=tagsForPost
     updatePost(postId, post).then((post) => {
       navigate(`/posts/${postId}`)
     })

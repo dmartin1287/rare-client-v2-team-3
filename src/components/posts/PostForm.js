@@ -37,7 +37,7 @@ export const PostForm = () => {
     }
 
     createPost(postData).then((post) => {
-      navigate(`posts/${post.id}`)
+      navigate(`/posts/${post.id}`)
     })
   }
 
@@ -93,8 +93,8 @@ export const PostForm = () => {
               <label htmlFor="category_id" className="label">Category: </label>
               <div className="control">
                 <div className="select">
-                  <select name="category_id"
-                    value={post.category_id}
+                  <select name="category"
+                    value={post.category}
                     onChange={handleChange}>
                     <option value="0">Select a category</option>
                     {categories.map(c => (
