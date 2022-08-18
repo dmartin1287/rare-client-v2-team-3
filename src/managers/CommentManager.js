@@ -9,6 +9,27 @@ export const saveNewComment = (comment) => {
   }).then(res => res.json())
 }
 
+export const updateComment = (comment) => {
+  return fetch(`http://localhost:8000/comments/${comment.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Token ${localStorage.getItem('auth_token')}`
+    },
+    body: JSON.stringify(comment)
+  })
+}
+
+export const getSingleComment = (comment) => {
+  return fetch(`http://localhost:8000/comments/${comment}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Token ${localStorage.getItem('auth_token')}`
+    },
+  }).then(res => res.json())
+}
+
 export const getCommentsByPostId = (id) => {
   return fetch(`http://localhost:8000/comments?post_id=${id}`, {
     headers: {
@@ -25,4 +46,5 @@ export const deleteComment = (commentId) => {
       'Authorization': `Token ${localStorage.getItem('auth_token')}`
     }
   })
+  
 }

@@ -22,6 +22,7 @@ export const CommentForm = () => {
     const copy = { ...comment }
     copy[evt.target.name] = evt.target.value
     setComment(copy)
+    // navigate(`/posts/${postId}/comments/`)
   }
 
   return (
