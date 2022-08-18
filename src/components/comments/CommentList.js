@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
-import { deleteComment, getCommentsByPostId } from '../../managers/CommentManager' 
+import { useParams, useNavigate } from "react-router-dom"
+import { deleteComment, getCommentsByPostId, updateComment } from '../../managers/CommentManager' 
 import { FaTrashAlt, FaUserCircle, FaEdit } from 'react-icons/fa';
 
 
@@ -13,6 +13,8 @@ export const CommentsList = ({ userId }) => {
       setComments(commentsData)
     })
   }, [postId])
+
+  const navigate = useNavigate()
   
   useEffect(() => {
     loadComments()
@@ -24,13 +26,23 @@ export const CommentsList = ({ userId }) => {
     })
   }
 
+  const handleGoBack = (event) => {
+    event.preventDefault()
+    navigate(`/posts/${postId}`)
+  }
+
   return <section className="section">
     <article className="panel is-info">
       <p className="panel-heading">
         Comments
       </p>
+      <button
+                onClick={handleGoBack}
+                className="button is-success">
+                Back to Post
+                </button>
       {
-        comments.map(comment => {
+        comments?.map(comment => {
           return <div className="panel-block" key={comment.id}>
             <article className="media is-flex-grow-1">
               <figure className="media-left">
@@ -41,23 +53,30 @@ export const CommentsList = ({ userId }) => {
               <div className="media-content">
                 <div className="content">
                   <p>
-                    <strong>{comment.author?.user.first_name} {comment.author?.user.last_name}</strong>
+                    <strong>{comment.author?.author.first_name} {comment.author?.author.last_name}</strong>
                     <br />
                     {comment.subject}
                     <br />
                     {comment.content}
+                    <br />
+                    {comment.datetime}
                   </p>
                 </div>
 
               </div>
               {
-                parseInt(userId) === comment.author_id ?
+                parseInt(userId) === comment.author.id ?
                   <div className="media-right">
+                    <span  className="icon">
+                      <FaEdit 
+                            onClick={() => {
+                                navigate( `/posts/${postId}/comments/${comment.id}/update`)
+                        }}/>
+                            </span>
+                    
                     <span className="icon">
-                      <FaEdit />
-                    </span>
-                    <span className="icon">
-                      <FaTrashAlt onClick={() => handleDelete(comment.id)} />
+                      <FaTrashAlt onClick={() => {if (window.confirm('Are you sure you wish to delete this item?')) handleDelete(comment.id)}} />
+                      
                     </span>
                   </div>
                   :
