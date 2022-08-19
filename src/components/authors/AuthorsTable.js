@@ -16,7 +16,7 @@ export const AuthorsTable = ({ authors, deleteClickEvent }) => {
       {
         authors.map(author => {
           return <tr key={author.id}>
-            <td><Link to={`/authors/${author.author.id}`}>{author.author.first_name}{author.author.last_name}</Link></td>
+            <td><Link to={`/authors/${author.author.id}`}>{author.author.first_name} {author.author.last_name}</Link></td>
             <td>{author.author.username}</td>
             <td>{author?.author.is_staff?"true":"false"}</td>
             {/* <td>

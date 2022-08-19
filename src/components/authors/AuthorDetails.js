@@ -21,7 +21,7 @@ export const AuthorDetails = () => {
       </header>
       <div className="card-image">
         <figure className="image">
-          <img src={author.profile_image_url} alt={author.author?.first_name} />
+          <img src={author.profile_image_url}/>
         </figure>
       </div>
       <div className="card-content">
