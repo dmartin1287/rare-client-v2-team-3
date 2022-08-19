@@ -16,7 +16,7 @@ export const EditPost = () => {
     getSinglePost(postId).then(data => {
       data.category=data.category.id
       setPost(data)
-      const tagIds = data.tags.map(t => t.id)
+      const tagIds = data.post_tags.map(t => t.id)
       setTagsForPost(tagIds)
     })
     getAllCategories().then(categoriesData => setCategories(categoriesData))
