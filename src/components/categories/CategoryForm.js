@@ -4,7 +4,7 @@ export const CategoryForm = ({ loadCategories, category, setCategory }) => {
   const saveCategoryEvent = (event) => {
     event.preventDefault()
     if (category.id) {
-      updateCategory(category).then(loadCategories)
+      updateCategory(category).then(setCategory({ label: '' })).then(loadCategories)
     } else {
       createCategory(category).then((data) => {
         loadCategories(data)
@@ -16,7 +16,7 @@ export const CategoryForm = ({ loadCategories, category, setCategory }) => {
   return (
     <form>
       <div className="field">
-        <label className="label">New Category:</label>
+        <label className="label">{category.id ? "Edit Category:" : "New Category:"}</label>
         <div className="control">
 
           <input

@@ -4,7 +4,7 @@ export const TagForm = ({ loadTags, tag, setTag }) => {
   const saveTagEvent = (event) => {
     event.preventDefault()
     if (tag.id) {
-      updateTag(tag).then(loadTags)
+      updateTag(tag).then(setTag({ label: '' })).then(loadTags)
     } else {
       createTag(tag).then((data) => {
         loadTags(data)
@@ -16,7 +16,7 @@ export const TagForm = ({ loadTags, tag, setTag }) => {
   return (
     <form>
       <div className="field">
-        <label className="label">New Tag:</label>
+        <label className="label">{tag.id ? "Edit Tag:" : "New Tag:"}</label>
         <div className="control">
 
           <input
