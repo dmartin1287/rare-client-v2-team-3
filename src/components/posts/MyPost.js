@@ -25,7 +25,7 @@ export const MyPost = () => {
 
   return (
     <section className="section">
-      <h1 className="title">My Posts</h1>
+      <h1 className="title">My Reading List</h1>
       <PostsTable posts={posts} deleteClickEvent={deleteClickEvent} />
     </section>
   )

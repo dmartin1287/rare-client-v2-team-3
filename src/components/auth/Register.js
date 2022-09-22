@@ -43,7 +43,7 @@ export const Register = ({ setToken, setUserId }) => {
   return (
     <section className="columns is-centered">
       <form className="column is-two-thirds" onSubmit={handleRegister}>
-        <h1 className="title">Rare Publishing</h1>
+        <h1 className="title">Reading Owl</h1>
         <p className="subtitle">Create an account</p>
         <div className="field">
           <label className="label">First Name</label>

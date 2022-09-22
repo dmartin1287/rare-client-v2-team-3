@@ -52,7 +52,7 @@ export const EditPost = () => {
   return (
     <section className="section">
       <article className="panel is-info">
-        <h2 className="panel-heading">Update post</h2>
+        <h2 className="panel-heading">Update Book</h2>
         <div className="panel-block">
           <form style={{ width: "100%" }}>
             <div className="field">
